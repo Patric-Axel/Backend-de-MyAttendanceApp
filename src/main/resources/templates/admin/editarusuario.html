@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>acualizar</title>
+<link rel="stylesheet" th:href="@{/css/editarusuario.css}">
+</head>
+<body>
+		<div class="edit-page">
+
+    <div class="edit-card">
+
+        <div class="edit-header">
+            <h2>Actualizar trabajador</h2>
+            <p>Modifica solo los datos administrativos del usuario.</p>
+        </div>
+
+        <form th:action="@{/admin/trabajadores/actualizar}" method="post">
+
+            <input type="hidden" name="idusuario" th:value="${usuario.idusuario}">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email"
+                           name="email"
+                           th:value="${usuario.email}"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Dirección</label>
+                    <input type="text"
+                           name="direccion"
+                           th:value="${usuario.direccion}">
+                </div>
+
+                <div class="form-group">
+                    <label>Estado</label>
+                    <select name="idestado">
+                        <option th:each="e : ${estados}"
+                                th:value="${e.idestado}"
+                                th:text="${e.descripcion}"
+                                th:selected="${e.idestado == usuario.idestado}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Rol</label>
+                    <select name="idrol">
+                        <option th:each="r : ${roles}"
+                                th:value="${r.idrol}"
+                                th:text="${r.descripcion}"
+                                th:selected="${r.idrol == usuario.idrol}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label>Nueva contraseña</label>
+                    <input type="password"
+                           name="pwd"
+                           placeholder="Dejar vacío para mantener la contraseña actual">
+                </div>
+
+            </div>
+
+            <div class="edit-actions">
+                <a th:href="@{/admin/trabajadores}" class="btn-cancelar">Cancelar</a>
+                <button type="submit" class="btn-guardar">
+                    Guardar cambios
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+</body>
+</html>

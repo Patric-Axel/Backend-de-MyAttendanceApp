@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard - MyAttendanceApp</title>
+	<link rel="stylesheet" th:href="@{/colors/colores.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+</head>
+<body>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<header>
+    <div th:replace="~{fragments/navegator :: navegator}"></div>
+</header>
+
+    <main>
+        <div class="container">
+            <section class="container-top" id="container-top-perfil">
+            </section>
+            <section class="container-body">
+                <!--<div class="guia">
+                    <h2 class="main-guia">Dashboard</h2>
+                </div>-->
+                <div class="title">
+                    <h1>Dashboard</h1>
+                </div>
+
+                <div class="cards-grid">
+
+                    <div class="stat-card users">
+                        <span class="card-label">Usuarios</span>
+
+                        <div class="card-icon icon-user">  
+                            <img th:src="@{/img/icon/Icon_User.png}" alt="Usuarios">
+                        </div>
+
+                        <span class="card-value card-asistencias"
+						      id="totalUsuarios"
+						      th:text="${dashboard.totalUsuarios}">
+						    0
+						</span>
+                        <span class="card-sub">Usuarios Totales</span>
+                    </div>
+
+                    <div class="stat-card asistencia">
+                        <span class="card-label">Asistencias Hoy</span>
+
+                        <div class="card-icon icon-asistencia">  
+                            <img th:src="@{/img/icon/Icon_User-Listo.png}" alt="Asistencias">
+                        </div>
+
+                        <span class="card-value card-asistencias"
+						      id="totalAsistencias"
+						      th:text="${dashboard.asistenciasHoy}">
+						    0
+						</span>
+                        <span class="card-sub">Asistencias registradas hoy</span>
+                    </div>
+
+                    <div class="stat-card tardanzas">
+                        <span class="card-label">Tardanzas Hoy</span>
+
+                        <div class="card-icon icon-tardanza">  
+                            <img th:src="@{/img/icon/Icon_User-Time.png}" alt="Tardanzas">
+                        </div>
+
+                        <span class="card-value card-asistencias"
+						      id="totalTardanzas"
+						      th:text="${dashboard.tardanzasHoy}">
+						    0
+						</span>
+                        <span class="card-sub">Tardanzas registradas hoy</span>
+                    </div>
+
+                    <div class="stat-card faltas">
+                        <span class="card-label">Faltas Hoy</span>
+
+                        <div class="card-icon icon-falta">  
+                            <img th:src="@{/img/icon/Icon_User-No.png}" alt="Faltas">
+                        </div>
+
+                        <span class="card-value card-asistencias"
+						      id="totalFaltas"
+						      th:text="${dashboard.faltasHoy}">
+						    0
+						</span>
+                        <span class="card-sub">Faltas registradas hoy</span>
+                    </div>
+
+                </div>
+
+                <div class="chart-container"> 
+
+                    <h2 class="chart-title">Asistencias de la semana</h2>
+
+                    <canvas id="asistenciaChart"></canvas> 
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <script> 
+        const ctx = document.getElementById('asistenciaChart'); 
+        new Chart(ctx, { type: 'line', data: { 
+            labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'], 
+        datasets: [{ label: 'Trabajadores', data: [6, 5, 6, 7, 6,7], 
+        borderColor: '#e91e63', 
+        backgroundColor: '#e91e63', 
+        tension: 0.1, 
+        fill: false, 
+        pointRadius: 5, 
+        pointHoverRadius: 7, 
+        pointBackgroundColor: '#e91e63', 
+        pointBorderColor: '#fff', 
+        pointBorderWidth: 2 }] }, 
+        options: { responsive: true, plugins: { legend: { display: false } }, 
+        scales: { y: { beginAtZero: true } } } }); 
+    </script>
+</body>
+</html>

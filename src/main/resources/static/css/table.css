@@ -1,0 +1,192 @@
+.tabla{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+td{
+    text-align: center;
+}
+td img{
+    width: 150px;
+    vertical-align: middle;
+}
+table{
+    background: white;
+    width: 100%;
+    
+}
+
+table,th,td{
+    border-collapse: collapse;
+    padding: 1em;
+}
+.estado{
+    width: 10px;
+    height: 10px;
+    padding: 10px;
+    background-color: #333;
+    border-radius: 200px;
+}
+
+.estado-disponible{
+    color:rgb(44, 156, 44);
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(191, 233, 191);
+}
+.estado-vacaciones{
+    color:rgb(44, 156, 156);
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(191, 233, 224);
+}
+.estado-cesado{
+    color:rgb(116, 116, 116);
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(230, 230, 230);
+}
+
+.estado-completo{
+    color:rgb(44, 156, 44);
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(191, 233, 191);
+}
+.estado-tarde{
+    color:rgb(156, 121, 44);
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(233, 215, 191);
+}
+.estado-falta{
+    color:rgb(156, 44, 44);
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(233, 191, 191);
+}
+
+.inactivo{
+    background-color: rgb(121, 121, 121);
+}
+.activo{
+    background-color: rgb(44, 156, 44);
+}
+.tarde{
+   background-color: #ffae00; 
+}
+.falta{
+   background-color: #c21010; 
+}
+.buttons-table{
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    justify-content: center;
+}
+.button-crud{
+    padding: 10px;
+    border-radius: 10px;
+}
+.btn-edit{
+    background-color: #1bafe9;
+}
+.btn-edit:hover{
+    background-color: #44e9ff
+}
+.btn-delete{
+    background-color: crimson;
+}
+.btn-delete:hover{
+    background-color: #ff2d2d;
+}
+
+.btn-details{
+    background-color: #30a0cc;
+}
+.btn-details:hover{
+    background-color: #20f3e8d8
+}
+
+.btn-confirm{
+    background-color: #48a84d;
+    color: white;
+    font-weight: 600;
+}
+.btn-confirm:hover{
+    background-color: #387e3c;
+}
+.btn-cancelx{
+    background-color: #c42727;
+    color: white;
+    font-weight: 600;
+}
+.btn-cancelx:hover{
+    background-color: #da4949;
+}
+
+.button-crud svg{
+    fill: rgb(48, 70, 119);
+    width: 30px;
+    height: 30px;
+}
+
+.modal-delete {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-delete.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  width: 425px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-content img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.btn-cancel {
+  background: #ccc;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-confirm-delete {
+  background: crimson;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-view{
+background: rgb(134, 159, 182);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+    color: white;
+    font-weight: 600;
+}

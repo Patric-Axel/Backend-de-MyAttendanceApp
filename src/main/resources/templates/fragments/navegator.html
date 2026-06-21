@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+    <nav class="navegador" th:fragment="navegator">
+
+    <div class="nav_top">
+
+        <div class="nav-logo">
+            <img th:src="@{/img/logo/logo_myattendance.png}"
+                 alt="Logo">
+        </div>
+
+        <div class="nav-title">
+            <h1>MyAttendanceApp</h1>
+        </div>
+
+    </div>
+
+    <div class="nav_buttom">
+
+        <ul>
+
+            <li>
+                <a th:href="@{/admin/dashboard}">
+                    <span class="nav_icon">
+                        <img th:src="@{/img/icon/Icon_House.png}" alt="">
+                    </span>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/admin/asistencias}">
+                    <span class="nav_icon">
+                        <img th:src="@{/img/icon/Icon_Calendar.png}" alt="">
+                    </span>
+                    <span>Asistencias</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/admin/trabajadores}">
+                    <span class="nav_icon">
+                        <img th:src="@{/img/icon/Icon_Users.png}" alt="">
+                    </span>
+                    <span>Trabajadores</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/admin/reportes}">
+                    <span class="nav_icon">
+                        <img th:src="@{/img/icon/Icon_Report.png}" alt="">
+                    </span>
+                    <span>Reportes</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/admin/logout}">
+                    <span class="nav_icon">
+                        <img th:src="@{/img/icon/Icon_Exit.png}" alt="">
+                    </span>
+                    <span>Salir</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</nav>
+
+</body>
+</html>

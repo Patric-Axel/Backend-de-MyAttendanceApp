@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+ <title>Detalles de Asistencia - MyAttendanceApp</title>
+
+    <link rel="stylesheet" th:href="@{/colors/colores.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/detalle-asistencia.css}">
+    <link rel="stylesheet" th:href="@{/css/table.css}">
+</head>
+<body>
+
+	<header>
+    	<div th:replace="~{fragments/navegator :: navegator}"></div>
+	</header>
+
+	<main>
+        <div class="container">
+        
+			<section class="container-top">
+            	<div th:replace="~{fragments/perfiltop :: perfiltop}"></div>
+        	</section>
+        	
+            <section class="container-body">
+                <div class="guia">
+                    <h2 class="main-guia">Dashboard / Asistencias / Detalles</h2>
+                </div>
+                    <div class="title">
+                    <h1>Detalles de Asistencia especifica</h1>
+                </div>
+                <div class="details-section">
+                    <div class="details-card">
+                        <h2>Información del Trabajador</h2>
+                        <div class="details-user">
+                            <div class="user-info-1">
+                                <div class="info"><h4>ID :</h4><h3 th:text="${usuario.idusuario}">1</h3></div>
+                                <div class="info"><h4>Nombre :</h4><h3 th:text="${usuario.nombres}">NN</h3></div>
+                                <div class="info"><h4>Apellidos :</h4><h3 th:text="${usuario.apellidos}">NN</h3></div>
+                                <div class="info">
+                                    <h4>Rol :</h4>
+                                    <div class="user-rol">EMPLEADO</div>
+                                </div>
+                            </div>
+                            <div class="user-info-2">
+                                <div class="user-img">
+                                    <img th:src="${usuario.fotoperfil != null ? usuario.fotoperfil : '/img/icon/Icon_Perfil.webp'}"
+     								alt="Imagen de perfil">
+                                </div>
+                                <div class="user-estado">
+                                    <h3>Activo</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="details-card">
+                        <h2>Detalles de Asistencia</h2>
+                        <div class="details-asistencia-box">
+                            <div class="fecha">
+                                <h4>Fecha:</h4>
+                                <h3 th:text="${asistencia.fecha}">--/--/--</h3>
+
+                            </div>
+                            
+                            <div class="hora-max">
+                                <h4>Hora Entrada:</h4> <h3>8.00</h3>
+                                <h4>Hora Salida:</h4> <h3>17:00 PM</h3>
+                                <h4>Horas a trabajar:</h4> <h3>9 horas</h3>
+                            </div>
+                            <div class="asistencia-user">
+                                <div class="user-hora-box">
+                                    <div class=" user-hora entrada">
+                                        <h3>Hora Entrada:</h3> <h3 th:text="${asistencia.horaentrada != null ? asistencia.horaentrada : '-'}">0</h3>
+                                    </div>
+                                    <div class="user-asistencia-info">
+                                        <div class="user-asistencia-info-box">
+                                            <h3>Imagen de entrada:</h3>
+                                            <div class="localizacion">
+                                                <h3>Localizacion:</h3>
+                                                <div class="localizacion-info">
+                                                    <p th:text="${asistencia.direntrada != null ? asistencia.direntrada : 'Sin dirección'}">
+													    AV 123
+													</p>
+                                                    <h4>Lima, Peru</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="asistencia-imagen">
+                                            <img th:src="${asistencia.fotoentrada != null ? asistencia.fotoentrada : '/img/icon/Icon_Calendar.png'}"
+     											alt="Entrada">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="user-hora-box">
+                                    <div class=" user-hora salida">
+                                        <h3>Hora Salida:</h3> <h3 th:text="${asistencia.horasalida != null ? asistencia.horasalida : '-'}">0</h3>
+                                    </div>
+                                    <div class="user-asistencia-info">
+                                        <div class="user-asistencia-info-box">
+                                            <h3>Imagen de salida:</h3>
+                                            <div class="localizacion">
+                                                <h3>Localizacion:</h3>
+                                                <div class="localizacion-info">
+                                                    <p th:text="${asistencia.dirsalida != null ? asistencia.dirsalida : 'Sin dirección'}">
+													    Av Siempre Viva 123
+													</p>
+                                                    <h4>Lima, Peru</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="asistencia-imagen">
+                                            <img th:src="${asistencia.fotosalida != null ? asistencia.fotosalida : '/img/icon/Icon_Calendar.png'}"
+     											alt="Entrada">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="horas-user">
+                                <h4>Horas Trabajadas:</h4>
+                                <h3 th:text="${asistencia.horastrabajadas != null ? asistencia.horastrabajadas + ' horas' : '0 horas'}">
+								    9 horas
+								</h3>
+                            </div>
+
+                            <div class="estado-asistencia">
+                                <h4>Estado de Asistencia:</h4>
+                                <div class="estado-text estado-completo">
+                                    <div th:switch="${asistencia.idestadoasis}">
+									    <div th:case="1" class="estado-text estado-tardanza">TARDANZA</div>
+									    <div th:case="2" class="estado-text estado-completo">COMPLETO</div>
+									    <div th:case="3" class="estado-text estado-permiso">PERMISO</div>
+									    <div th:case="4" class="estado-text estado-falta">FALTA</div>
+									</div>
+                                </div>  
+                            </div>
+                            
+                            <div class="observacion-asistencia">
+							    <h4>Observación:</h4>
+							
+							    <div class="observacion-box">
+							        <p th:text="${asistencia.observacion != null && !asistencia.observacion.isEmpty() 
+							                    ? asistencia.observacion 
+							                    : 'Sin observación registrada'}">
+							            Sin observación registrada
+							        </p>
+							    </div>
+							</div>
+
+                        </div>
+                    </div>
+
+                    <section class="container-bottom">
+                        <div class="buttons-bottom">
+                            <button class="btn-secondary" onclick="window.history.back()">Volver</button>
+                        </div>
+                    </section>
+                  </div>
+            </section>
+
+        </div>
+    </main>
+
+</body>
+</html>

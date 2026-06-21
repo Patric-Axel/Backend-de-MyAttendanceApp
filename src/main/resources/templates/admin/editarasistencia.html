@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/editarusuario.css}">
+<title>Insert title here</title>
+</head>
+<body>
+
+		<div class="edit-page">
+
+			    <div class="edit-card">
+			
+			        <div class="edit-header">
+			            <h2>Actualizar Asistencia</h2>
+			            <p>Modificar información de asistencia registrada.</p>
+			        </div>
+			
+			        <form th:action="@{/admin/asistencias/actualizar}" method="post">
+			
+			            <input type="hidden"
+			                   name="idasistencia"
+			                   th:value="${asistencia.idasistencia}">
+			
+			            <div class="form-grid">
+			
+			                <div class="form-group">
+			                    <label>Trabajador</label>
+			                    <input type="text"
+			                           th:value="${asistencia.objUsuario.nombres + ' ' + asistencia.objUsuario.apellidos}"
+			                           readonly>
+			                </div>
+			
+			                <div class="form-group">
+			                    <label>Fecha</label>
+			                    <input type="text"
+			                           th:value="${asistencia.fecha}"
+			                           readonly>
+			                </div>
+			
+			                <div class="form-group">
+			                    <label>Hora Entrada</label>
+			                    <input type="time"
+			                           name="horaentrada"
+			                           th:value="${asistencia.horaentrada}">
+			                </div>
+			
+			                <div class="form-group">
+			                    <label>Hora Salida</label>
+			                    <input type="time"
+			                           name="horasalida"
+			                           th:value="${asistencia.horasalida}">
+			                </div>
+			
+			                <div class="form-group full">
+			                    <label>Estado</label>
+			
+			                    <select name="idestadoasis">
+			
+			                        <option th:each="e : ${estados}"
+			                                th:value="${e.idestadoasis}"
+			                                th:text="${e.descripcion}"
+			                                th:selected="${e.idestadoasis == asistencia.idestadoasis}">
+			                        </option>
+			
+			                    </select>
+			                </div>
+			
+			                <div class="form-group full">
+			                    <label>Observación</label>
+			
+			                    <textarea
+			                            name="observacion"
+			                            rows="4"
+			                            th:text="${asistencia.observacion}">
+			                    </textarea>
+			
+			                </div>
+			
+			            </div>
+			
+			            <div class="edit-actions">
+			
+			                <a th:href="@{/admin/asistencias}"
+			                   class="btn-cancelar">
+			                    Cancelar
+			                </a>
+			
+			                <button type="submit"
+			                        class="btn-guardar">
+			                    Guardar Cambios
+			                </button>
+			
+			            </div>
+			
+			        </form>
+			
+			    </div>
+			
+			</div>
+
+</body>
+</html>

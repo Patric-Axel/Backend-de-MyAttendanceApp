@@ -1,0 +1,83 @@
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px;
+    margin: 32px 0px;
+}
+
+.stat-card {
+align-items: center;
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 56px 53px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.card-label{
+    align-self: center;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2px;
+    background-color: var(--color-icon-background);
+}
+.card-icon img {
+    width: 60%;
+    height: 60%;
+}
+
+.card-value{
+    font-size: 3em;
+    font-weight: 700;
+}
+.card-sub{
+    font-size: 0.7em;
+}
+
+
+.users       { color: var(--color-users); font-weight: 600; }
+.asistencia  { color: var(--color-users-asistencia); font-weight: 600; }   
+.tardanzas  { color: var(--color-users-tardanza); font-weight: 600; }   
+.faltas      { color: var(--color-users-falta); font-weight: 600; }
+
+.icon-user       { background-color: var(--color-users); }
+.icon-asistencia { background-color: var(--color-users-asistencia); }
+.icon-tardanza   { background-color: var(--color-users-tardanza); }  
+.icon-falta      { background-color: var(--color-users-falta); }
+
+.chart-container{ 
+    height: 500px !important;
+    height: 700px;
+    background: white;
+    padding: 30px 60px 100px 60px;
+    border-radius: 12px;
+    border: 1px solid #e8e8e8;
+}
+.chart-container h2 {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+#asistenciaChart{
+    place-self: center;
+    height: 500px !important;
+    width: 1200px !important;
+}

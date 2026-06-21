@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Asistencia - MyAttendanceApp</title>
+	<link rel="stylesheet" th:href="@{/colors/colores.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/table.css}">
+    <link rel="stylesheet" th:href="@{/css/asistencias.css}">
+</head>
+<body>
+	
+	<header>
+    	<div th:replace="~{fragments/navegator :: navegator}"></div>
+	</header>
+
+	<main>
+    	<div class="container">
+        <section class="container-top">
+            <div th:replace="~{fragments/perfiltop :: perfiltop}"></div>
+        </section>
+        
+        <section class="container-body">
+          <div class="guia">
+            <h2 class="main-guia">Dashboard / Asistencias</h2>
+          </div>
+          <div class="title">
+            <h1>Detalle de asistencias</h1>
+          </div>
+          <div
+            style="
+              display: flex;
+              flex-direction: row-reverse;
+              justify-content: space-between;
+              margin-bottom: 20px;
+            "
+          >
+            <div class="filtros-asistencias">
+              <select id="filtroDisponibilidad">
+                <option value="">Todos los estados de usuario</option>
+                <option value="DISPONIBLE">ACTIVO</option>
+                <option value="OCUPADO">VACACIONES</option>
+                <option value="CESADO">CESADO</option>
+              </select>
+
+              <select id="filtroAsistencias">
+                <option value="">Todas las asistencias</option>
+                <option value="COMPLETO">COMPLETO</option>
+                <option value="TARDANZA">TARDANZA</option>
+                <option value="FALTA">FALTA</option>
+                <option value="PERMISO">PERMISO</option>
+              </select>
+
+              <input
+                type="text"
+                id="buscadorNombre"
+                placeholder="Buscar Usuario por apellido..."
+              />
+              <input type="date" id="filtroFecha" />
+            </div>
+          </div>
+          <div class="tabla">
+            <table>
+              <thead>
+                <tr>
+                  <th>Id Usuario</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Estado Usuario</th>
+                  <th>Fecha</th>
+                  <th>Entrada</th>
+                  <th>Direccion Entrada</th>
+                  <th>Salida</th>
+                  <th>Direccion Salida</th>
+                  <th>Horas Trabajadas</th>
+                  <th>Estado Asistencia</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyAsistencias">
+    <tr th:each="asis : ${asistencias}">
+        <td th:text="${asis.idusuario}">1</td>
+        <td th:text="${asis.nombres}">Carlos Julio</td>
+        <td th:text="${asis.apellidos}">Rodriguez</td>
+
+        <td>
+            <div class="estado-text"
+                 th:classappend="${asis.estadoUsuario == 'Activo'} ? ' estado-disponible' : 
+                                 (${asis.estadoUsuario == 'Vacaciones'} ? ' estado-vacaciones' : ' estado-cesado')">
+                <h5 th:text="${asis.estadoUsuario}">ACTIVO</h5>
+            </div>
+        </td>
+
+        <td th:text="${asis.fecha}">2026-06-06</td>
+        <td th:text="${asis.horaentrada}">08:00</td>
+        <td th:text="${asis.direntrada}">Lima, Perú</td>
+        <td th:text="${asis.horasalida}">17:00</td>
+        <td th:text="${asis.dirsalida}">Lima, Perú</td>
+        <td th:text="${asis.horastrabajadas}">9.00</td>
+
+        <td>
+            <div class="estado-text"
+                 th:classappend="${asis.estadoAsistencia == 'Completo'} ? ' estado-completo' :
+                                 (${asis.estadoAsistencia == 'Tardanza'} ? ' estado-tardanza' :
+                                 (${asis.estadoAsistencia == 'Falta'} ? ' estado-falta' : ' estado-permiso'))">
+                <h5 th:text="${asis.estadoAsistencia}">COMPLETO</h5>
+            </div>
+        </td>
+
+        <td>
+            <div class="buttons-table">
+                <a class="button-crud btn-details"
+                   th:href="@{/admin/asistencias/{id}(id=${asis.idasistencia})}">
+                    Ver
+                </a>
+
+                <a th:href="@{/admin/asistencias/editar/{id}(id=${asis.idasistencia})}"
+				   class="btn-edit">
+				    ✏️ Editar
+				</a>
+            </div>
+        </td>
+    </tr>
+</tbody>
+            </table>
+          </div>
+        </section>
+
+	 </div>
+	</main>
+</body>
+</html>

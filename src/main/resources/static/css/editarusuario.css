@@ -1,0 +1,123 @@
+.edit-page {
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.edit-card {
+    width: 100%;
+    max-width: 760px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.edit-header {
+    margin-bottom: 25px;
+}
+
+.edit-header h2 {
+    margin: 0;
+    font-size: 26px;
+    color: #1f2937;
+}
+
+.edit-header p {
+    margin-top: 6px;
+    color: #6b7280;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: span 2;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.form-group input,
+.form-group select {
+    height: 45px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 0 14px;
+    font-size: 15px;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+.edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn-cancelar,
+.btn-guardar {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-cancelar {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.btn-guardar {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-guardar:hover {
+    background: #1d4ed8;
+}
+
+.btn-cancelar:hover {
+    background: #d1d5db;
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: span 1;
+    }
+
+    .edit-actions {
+        flex-direction: column;
+    }
+
+    .btn-cancelar,
+    .btn-guardar {
+        width: 100%;
+        text-align: center;
+    }
+}

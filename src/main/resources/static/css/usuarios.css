@@ -1,0 +1,96 @@
+.filters-section {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+.search-input:focus { border-color: #555; }
+
+.filter-select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    background: white;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    min-width: 150px;
+}
+.filter-select:focus { border-color: #555; }
+
+.rol-text{
+    background-color: #e8f4ff;
+    color: #1565c0;
+    border-radius: 20px;
+    padding: 8px 24px;
+}
+.admin{
+    background-color: #e48989;
+    color: #d44141;
+}
+
+.jefes{
+    background-color: #fff4d1;
+    color: #c09215;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #22a34d;
+    border: solid 2px #22a34d;
+    color: white;
+    padding: 8px 28px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: whitesmoke;
+    border-color: #6fcf8f;
+    color: #6fcf8f;
+}
+
+.btn-edit{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:95px;
+    height:38px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#f59e0b;
+    color:white;
+
+    font-size:14px;
+    font-weight:600;
+
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.btn-edit:hover{
+    background:#d97706;
+    transform:translateY(-2px);
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login - MyAttendanceApp</title>
+<link rel="stylesheet" href="/css/admin-login.css">
+<link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+
+<main class="login-page">
+    <section class="login-card">
+
+        <img src="/img/logo/logo_myattendance.png"
+             alt="Logo MyAttendanceApp"
+             class="logo">
+
+        <h2>MyAttendanceApp</h2>
+        <p>Portal administrativo de control de asistencia remota</p>
+
+		<div th:if="${error}" class="error-msg">
+    		<span th:text="${error}"></span>
+		</div>
+
+        <form th:action="@{/admin/login}" method="post">
+            <div class="form-group">
+                <label>Correo</label>
+                <input type="email" name="email" placeholder="example@cibertec.pe" required>
+            </div>
+
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" name="password" placeholder="Ingrese su contraseña" required>
+            </div>
+
+            <button type="submit">Ingresar al Dashboard</button>
+        </form>
+
+        <a href="/" class="volver">← Volver al inicio</a>
+
+    </section>
+</main>
+
+</body>
+</html>

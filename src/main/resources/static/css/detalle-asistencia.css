@@ -1,0 +1,255 @@
+.asistencia-user{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-hora-box{
+    display: flex;
+    flex-direction: column;
+
+    color: #181818;
+    padding: 38px;
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    flex: 1;
+}
+
+
+.entrada-hora h5{
+    color: white;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.user-hora{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #d6d6d6;
+    color: #333;
+    padding: 16px;
+    border-radius: 10px;
+        justify-content: space-between;
+}
+
+.user-asistencia-info-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.user-asistencia-info{
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.asistencia-imagen{
+    width: 180px;
+    height: 260px;
+    border-radius: 10px;
+    background: #dee1e6;
+    place-content: center;
+    text-align: center;
+}
+
+.details-user{
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+}
+.user-img{
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    background: #dee1e6;
+}
+.user-img img{
+    width: 100%;
+    height: 100%;
+}
+
+.user-estado{
+    text-align: center;
+    color: rgb(44, 156, 44);
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(191, 233, 191);
+}
+
+.user-info-2{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.user-info-1{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-info-1 h4{
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #333;
+}
+
+.user-info-1 h3{
+    font-size: 1em;
+    font-weight: 600;
+    background: #e2e2e2;
+    color: #666666;
+    padding: 8px 24px;
+    border-radius: 20px;
+}
+.info{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.user-rol{
+    background-color: #e8f4ff;
+    color: #1565c0;
+    border-radius: 20px;
+    padding: 8px 24px;
+    font-weight: 700;
+}
+
+.hora-max{
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+    align-items: center;
+}
+
+.fecha{
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+    align-items: center;
+}
+
+.details-asistencia-box{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.localizacion{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.localizacion-info{
+    background-color: #e8f4ff;
+    color: #1565c0;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-weight: 700;
+}
+
+.entrada{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #83ad83;
+    padding: 16px;
+    color: white;
+    border-radius: 10px;
+}
+.salida{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #e48989;
+    padding: 16px;
+    color: white;
+    border-radius: 10px;
+}
+
+.horas-user{
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+    align-items: center;
+}
+.estado-asistencia{
+    background: rgb(136, 207, 139);
+    color: rgb(44, 156, 44);
+    font-weight: 600;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+    align-items: center;
+}
+
+.buttons-bottom{
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.btn-secondary{
+    background-color: #304677;
+    color: #ffffff;
+    border-color: #304677;
+    padding: 8px 28px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.details-section{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.details-card{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.observacion-asistencia {
+    margin-top: 20px;
+}
+
+.observacion-asistencia h4 {
+    margin-bottom: 8px;
+}
+
+.observacion-box {
+    background: #f8fafc;
+    border-left: 4px solid #2563eb;
+    padding: 14px 16px;
+    border-radius: 10px;
+}
+
+.observacion-box p {
+    margin: 0;
+    color: #334155;
+    line-height: 1.5;
+}

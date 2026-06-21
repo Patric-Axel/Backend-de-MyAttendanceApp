@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>registrar</title>
+<link rel="stylesheet" th:href="@{/css/editarusuario.css}">
+</head>
+<body>
+
+<div class="edit-page">
+
+    <div class="edit-card">
+
+        <div class="edit-header">
+            <h2>Registrar trabajador</h2>
+            <p>Completa los datos para crear un nuevo usuario en el sistema.</p>
+        </div>
+
+        <form th:action="@{/admin/trabajadores/guardar}" method="post">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Nombres</label>
+                    <input type="text" name="nombres" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Apellidos</label>
+                    <input type="text" name="apellidos" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Celular</label>
+                    <input type="text" name="celular" required>
+                </div>
+
+                <div class="form-group full">
+                    <label>Dirección</label>
+                    <input type="text" name="direccion">
+                </div>
+
+                <div class="form-group">
+                    <label>Estado</label>
+                    <select name="idestado" required>
+                        <option th:each="e : ${estados}"
+                                th:value="${e.idestado}"
+                                th:text="${e.descripcion}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Rol</label>
+                    <select name="idrol" required>
+                        <option th:each="r : ${roles}"
+                                th:value="${r.idrol}"
+                                th:text="${r.descripcion}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label>Contraseña</label>
+                    <input type="password" name="pwd" th:minlength="8" required>
+                </div>
+
+            </div>
+
+            <div class="edit-actions">
+                <a th:href="@{/admin/trabajadores}" class="btn-cancelar">
+                    Cancelar
+                </a>
+                <button type="submit" class="btn-guardar">
+                    Registrar trabajador
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

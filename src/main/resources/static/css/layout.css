@@ -1,0 +1,159 @@
+html, body{
+    background-color: var(--color-background-admin);
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat';
+}
+
+a{
+    text-decoration: none;
+    color: var(--color-text-primary);
+}
+
+.navegador{
+    position: fixed;
+    width: 20em;
+    height: 100vh;
+    background-color: var(--color-navbar);
+}
+main{
+    margin-left: 20em;
+}
+
+.nav-logo{
+    width: 70px;
+    height: 70px;
+
+}
+.nav-logo img{
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+}
+.nav_top{
+display: flex;
+    flex-direction: row;
+    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px white;
+    justify-content: flex-start;
+    align-items: center;
+}
+.nav-title h1{
+    color: white;
+    font-size: 1.6em;
+    font-weight: 500;
+    margin-left: 10px;
+}
+.nav-title h1 b{
+    color: #ffffff;
+}
+li{
+    transition:all 0.2s;
+}
+
+.nav_buttom ul{
+    list-style: none;
+}
+
+.nav_buttom ul li{
+    width: 100%;
+}
+
+.nav_buttom ul li a{
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 15px;
+    font-size: 1.1em;
+    transition: all .3s ease;
+}
+
+.nav_buttom ul a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 12px;
+    transition:all 0.5s;
+}
+
+.nav_icon{
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.nav_icon img{
+    width: 100%;
+    display: block;
+}
+
+.nav_buttom ul li a:hover{
+    background-color: var(--color-primary-blue);
+    padding-left: 20px;
+}
+
+
+.container-top {
+    padding: 10px 12px 0px 0px;
+    justify-items: end;
+}
+
+.perfil {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.perfil-correo {
+    margin-right: 10px;
+}
+
+.correo {
+    font-size: 1em;
+    color: #333;
+}
+
+.rango {
+    font-size: 0.6em;
+    color: dimgrey;
+}
+
+.perfil-img {
+    width: 32px;
+    height: 32px;
+}
+
+.perfil-img img {
+    width: 100%;
+    display: block;
+}
+
+.container-body {
+    padding: 4px 20px 50px 20px;
+}
+
+.guia {
+    font-size: 0.5em;
+    display: flex;
+    flex-direction: row;
+}
+
+.guia .main-guia {
+    font-weight: 600;
+    color: var(--color-text-secondary);
+}
+.title {
+    margin: 12px 0px;
+    color: var(--color-text-primary);
+}
+.title h1 {
+    font-size: 2.8em;
+    font-weight: 700;
+}

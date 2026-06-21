@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Usuarios - MyAttendanceApp</title>
+	<link rel="stylesheet" th:href="@{/colors/colores.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/table.css}">
+    <link rel="stylesheet" th:href="@{/css/usuarios.css}">
+</head>
+<body>
+	
+	<header>
+    	<div th:replace="~{fragments/navegator :: navegator}"></div>
+	</header>
+
+	<main>
+    	<div class="container">
+        <section class="container-top">
+            <div th:replace="~{fragments/perfiltop :: perfiltop}"></div>
+        </section>
+     <section class="container-body">
+                <div class="guia">
+                    <h2 class="main-guia">Dashboard / Trabajadores</h2>
+                </div>
+                    <div class="title"
+					     style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+					
+					    <h1>Gestión de Trabajadores</h1>
+					    <a th:href="@{/admin/trabajadores/nuevo}"
+					       class="btn-primary">
+					        + Nuevo Trabajador
+					    </a>
+					</div>
+
+                <div class="filters-section" style="display: flex;flex-direction: row-reverse;justify-content: space-between; margin-bottom: 20px;">
+                    <div class="search-box">
+                        <input type="text" id="searchUsuarios" placeholder="Buscar por nombre, email o documento..." class="search-input">
+                    </div>
+
+                    <div class="filter-group" >
+                        <select id="filterRol" class="filter-select">
+                            <option value="">Todos los roles</option>
+                            <option value="EMPLEADO">EMPLEADO</option>
+                            <option value="ADMIN">ADMINISTRADOR</option>
+                            
+                        </select>
+                        <select id="filterEstado" class="filter-select">
+                            <option value="">Todos los estados</option>
+                            <option value="ACTIVO">ACTIVO</option>
+							<option value="VACACIONES">VACACIONES</option>
+							<option value="CESADO">CESADO</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="tabla">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Direccion</th>
+                                <th>Email</th>
+                                <th>Celular</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th>Fecha Registro</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usuariosTableBody">
+						    <tr th:each="usuario : ${usuarios}">
+						        <td th:text="${usuario.idusuario}">1</td>						
+						        <td th:text="${usuario.nombres}">
+						        </td>						
+						        <td th:text="${usuario.apellidos}">
+						        </td>
+						        <td th:text="${usuario.direccion}">
+						        </td>
+						        <td th:text="${usuario.email}">
+						        </td>
+						        <td th:text="${usuario.celular}">
+						        </td>
+						
+						        <td style="justify-items:center;">
+						            <div class="rol-text rol">
+						
+						                <h5 th:text="${usuario.objRol.descripcion}"></h5>
+						            </div>
+						        </td>
+						
+						        <td style="justify-items:center;">
+	
+						            <div class="estado-text"
+						
+						                 th:classappend="${
+						                    usuario.idestado == 1 ?
+						                    ' estado-disponible' :
+						
+						                    (usuario.idestado == 2 ?
+						                    ' estado-vacaciones' :
+						
+						                    ' estado-cesado')
+						                 }">
+						
+						                <h5 th:text="${usuario.objEstadoUsu.descripcion}"></h5>				
+						            </div>					
+						        </td>						
+						        <td th:text="${usuario.fecha}">
+						            2026-06-01
+						        </td>						
+						        <td>
+						
+						            <div class="buttons-table">
+						
+						                <div class="action-buttons">
+
+									        <a th:href="@{/admin/trabajadores/editar/{id}(id=${usuario.idusuario})}"
+									           class="btn-action btn-edit">
+									            Edit
+									        </a>
+						
+						   				</div>					
+						            </div>						
+						        </td>
+						    </tr>
+						
+						</tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+</body>
+</html>
