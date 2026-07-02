@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import com.moviles.dto.AsistenciaHoyResponse;
 import com.moviles.dto.AsistenciaResponse;
+import com.moviles.dto.DetalleSAsistenciaResponse;
 import com.moviles.dto.EntradaRequest;
+import com.moviles.dto.HistorialAsistenciaResponse;
 import com.moviles.dto.SalidaRequest;
-import com.moviles.model.Asistencia;
+//import com.moviles.model.Asistencia;
 import com.moviles.services.AsistenciaService;
 
 @RestController
@@ -37,14 +39,14 @@ public class AsistenciaController {
                 asistenciaService.registrarSalida(request));
     }
     
-    @GetMapping("/usuario/{idusuario}")
+    /*@GetMapping("/usuario/{idusuario}")
     public ResponseEntity<List<Asistencia>> listarPorUsuario(
             @PathVariable Integer idusuario){
 
         return ResponseEntity.ok(
                 asistenciaService.listarPorUsuario(idusuario));
         
-    }
+    }*/
     
     @GetMapping("/hoy/{idusuario}")
     public ResponseEntity<AsistenciaHoyResponse> obtenerAsistenciaHoy(
@@ -52,6 +54,24 @@ public class AsistenciaController {
     ) {
         return ResponseEntity.ok(
                 asistenciaService.obtenerAsistenciaHoy(idusuario)
+        );
+    }
+    
+    @GetMapping("/usuario/{idusuario}/historial")
+    public ResponseEntity<List<HistorialAsistenciaResponse>> listarHistorial(
+            @PathVariable Integer idusuario) {
+
+        return ResponseEntity.ok(
+                asistenciaService.listarHistorialPorUsuario(idusuario)
+        );
+    }
+    
+    @GetMapping("/{idasistencia}/detalle")
+    public ResponseEntity<DetalleSAsistenciaResponse> obtenerDetalle(
+            @PathVariable Integer idasistencia) {
+
+        return ResponseEntity.ok(
+                asistenciaService.obtenerDetalleAsistencia(idasistencia)
         );
     }
 }

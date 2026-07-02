@@ -13,7 +13,9 @@ import com.moviles.constantes.EstadoAsistencia;
 import com.moviles.constantes.EstadoUsuario;
 import com.moviles.dto.AsistenciaHoyResponse;
 import com.moviles.dto.AsistenciaResponse;
+import com.moviles.dto.DetalleSAsistenciaResponse;
 import com.moviles.dto.EntradaRequest;
+import com.moviles.dto.HistorialAsistenciaResponse;
 import com.moviles.dto.SalidaRequest;
 import com.moviles.interfaces.IAsistenciaRepository;
 import com.moviles.interfaces.IUsuarioRepository;
@@ -68,9 +70,11 @@ public class AsistenciaServiceImpl implements AsistenciaService{
 		
 		
 		// si su registro es despues de las 12 media dia, se le considera falta automatica
-		//if(LocalTime.now().isAfter(LocalTime.of(23, 59)))
 		//hora de pruebas
-		if(LocalTime.now().isAfter(LocalTime.of(12, 0))){
+		   if(LocalTime.now().isAfter(LocalTime.of(23, 59))) {
+		
+	    //hora de regla de de negocio
+		//if(LocalTime.now().isAfter(LocalTime.of(12, 0))){
 
 		    Asistencia falta = new Asistencia();
 
@@ -234,6 +238,64 @@ public class AsistenciaServiceImpl implements AsistenciaService{
 	            asistencia.getObjEstadoAsis().getDescripcion()
 	    );
 	}
-	
 
+	@Override
+	public List<HistorialAsistenciaResponse> listarHistorialPorUsuario(Integer idusuario) {
+		return repoAsis.findByIdusuarioOrderByFechaDesc(idusuario)
+                .stream()
+                .map(this::convertirHistorialDTO)
+                .toList();
+	}
+
+
+	@Override
+	public DetalleSAsistenciaResponse obtenerDetalleAsistencia(Integer idasistencia) {
+		Asistencia asistencia = repoAsis.findById(idasistencia)
+                .orElseThrow(() -> new RuntimeException("Asistencia no encontrada"));
+
+        return convertirDetalleDTO(asistencia);
+    }
+	
+	
+	//constructor
+    private HistorialAsistenciaResponse convertirHistorialDTO(Asistencia a) {
+
+        return new HistorialAsistenciaResponse(
+                a.getIdasistencia(),
+                a.getFecha(),
+                a.getHoraentrada(),
+                a.getHorasalida(),
+                a.getHorastrabajadas(),
+                a.getObjEstadoAsis() != null ? a.getObjEstadoAsis().getDescripcion() : null
+        );
+    }
+    
+
+    //constructor
+    private DetalleSAsistenciaResponse convertirDetalleDTO(Asistencia a) {
+
+        return new DetalleSAsistenciaResponse(
+                a.getIdasistencia(),
+                a.getFecha(),
+                a.getFecharegistro(),
+                a.getHoraentrada(),
+                a.getHorasalida(),
+                a.getHorastrabajadas(),
+
+                a.getLatitudentrada(),
+                a.getLongitudentrada(),
+                a.getLatitudsalida(),
+                a.getLongitudsalida(),
+
+                a.getDirentrada(),
+                a.getDirsalida(),
+
+                a.getFotoentrada(),
+                a.getFotosalida(),
+
+                a.getObjEstadoAsis() != null ? a.getObjEstadoAsis().getDescripcion() : null,
+                a.getObservacion()
+        );
+    }
 }
+	

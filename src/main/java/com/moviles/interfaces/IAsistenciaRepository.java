@@ -13,6 +13,8 @@ public interface IAsistenciaRepository extends JpaRepository<Asistencia, Integer
 	Optional<Asistencia> findByIdusuarioAndFecha(
             Integer idusuario,
             LocalDate fecha);
+	
+	List<Asistencia> findByIdusuarioOrderByFechaDesc(Integer idusuario);
 
     List<Asistencia> findByIdusuario(
             Integer idusuario);
