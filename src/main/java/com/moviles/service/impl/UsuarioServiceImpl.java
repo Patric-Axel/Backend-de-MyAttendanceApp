@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.moviles.constantes.EstadoUsuario;
 import com.moviles.dto.ActualizarFotoRequest;
+import com.moviles.dto.ActualizarPasswordRequest;
 import com.moviles.dto.ActualizarPerfilRequest;
 import com.moviles.dto.LoginRequest;
 import com.moviles.dto.PerfilResponse;
@@ -31,118 +32,145 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public SesionResponse login(LoginRequest request) {
-		// TODO Auto-generated method stub
-		Optional<Usuario> usuarioOpt = RepoUsu.findByEmail(request.getEmail());
-		
-        if(usuarioOpt.isEmpty()) {
 
-            return new SesionResponse (
-                    false,
-                    "Usuario no encontrado",
-                    null,
-                    null,
-                    null
-                    
-       
-            );
-        }
+	    Optional<Usuario> usuarioOpt =
+	            RepoUsu.findByEmail(request.getEmail());
 
-        Usuario usuario = usuarioOpt.get();
+	    if (usuarioOpt.isEmpty()) {
 
-        if(!passwordEncoder.matches(
-                request.getPassword(),
-                usuario.getPwd())) {
+	        return new SesionResponse(
+	                false,
+	                "Usuario no encontrado",
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null
+	        );
+	    }
 
-            return new SesionResponse(
-                    false,
-                    "Contraseña incorrecta",
-                    null,
-                    null,
-                    null
-            );
-        }
+	    Usuario usuario = usuarioOpt.get();
 
-        if(usuario.getIdestado() == EstadoUsuario.CESADO) {
+	    if (!passwordEncoder.matches(
+	            request.getPassword(),
+	            usuario.getPwd())) {
 
-            return new SesionResponse(
-                    false,
-                    "Usuario ha sido Cesado",
-                    null,
-                    null,
-                    null
-            );
-        }
+	        return new SesionResponse(
+	                false,
+	                "Contraseña incorrecta",
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null
+	        );
+	    }
 
-        return new SesionResponse(
-                true,
-                "Login exitoso",
-                usuario.getIdusuario(),
-                usuario.getNombres(),
-                usuario.getIdrol()
-        );
-    }
+	    if (usuario.getIdestado() == EstadoUsuario.CESADO) {
+
+	        return new SesionResponse(
+	                false,
+	                "Usuario ha sido cesado",
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null
+	        );
+	    }
+
+	    return new SesionResponse(
+	            true,
+	            "Login exitoso",
+	            usuario.getIdusuario(),
+	            usuario.getNombres(),
+	            usuario.getApellidos(),
+	            usuario.getEmail(),
+	            usuario.getCelular(),
+	            usuario.getDireccion(),
+	            usuario.getFotoperfil(),
+	            usuario.getIdrol(),
+	            usuario.getIdestado()
+	    );
+	}
 
 	@Override
 	public SesionResponse register(RegisterRequest request) {
-		// TODO Auto-generated method stub
-		Optional<Usuario> usuarioExistente =
-				RepoUsu.findByEmail(
-                        request.getEmail());
 
-        if(usuarioExistente.isPresent()) {
+	    Optional<Usuario> usuarioExistente =
+	            RepoUsu.findByEmail(request.getEmail());
 
-            return new SesionResponse(
-                    false,
-                    "El correo ya está registrado",
-                    null,
-                    null,
-                    null
-            );
-        }
+	    if (usuarioExistente.isPresent()) {
 
-        Usuario usuario = new Usuario();
+	        return new SesionResponse(
+	                false,
+	                "El correo ya está registrado",
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null,
+	                null
+	        );
+	    }
 
-        usuario.setNombres(request.getNombres());
-        usuario.setApellidos(request.getApellidos());
-        usuario.setDireccion(request.getDireccion());
-        usuario.setEmail(request.getEmail());
-        usuario.setCelular(request.getCelular());
+	    Usuario usuario = new Usuario();
 
-        // BCrypt
-        usuario.setPwd(passwordEncoder.encode(request.getPassword()));
+	    usuario.setNombres(request.getNombres());
+	    usuario.setApellidos(request.getApellidos());
+	    usuario.setDireccion(request.getDireccion());
+	    usuario.setEmail(request.getEmail());
+	    usuario.setCelular(request.getCelular());
 
-        usuario.setFotoperfil(null);
+	    usuario.setPwd(
+	            passwordEncoder.encode(request.getPassword())
+	    );
 
-        // Activo
-        usuario.setIdestado(1);
+	    usuario.setFotoperfil(null);
+	    usuario.setIdestado(1);
+	    usuario.setIdrol(2);
 
-        // Empleado
-        usuario.setIdrol(2);
+	    RepoUsu.save(usuario);
 
-        RepoUsu.save(usuario);
-
-        return new SesionResponse(
-                true,
-                "Usuario registrado correctamente",
-                usuario.getIdusuario(),
-                usuario.getNombres(),
-                usuario.getIdrol()
-        );
-    }
+	    return new SesionResponse(
+	            true,
+	            "Usuario registrado correctamente",
+	            usuario.getIdusuario(),
+	            usuario.getNombres(),
+	            usuario.getApellidos(),
+	            usuario.getEmail(),
+	            usuario.getCelular(),
+	            usuario.getDireccion(),
+	            usuario.getFotoperfil(),
+	            usuario.getIdrol(),
+	            usuario.getIdestado()
+	    );
+	}
 
 	@Override
-	public PerfilResponse actualizarPerfil(Integer idusuario, ActualizarPerfilRequest request) {
-		// TODO Auto-generated method stub
-		Usuario usuario = RepoUsu
+	public PerfilResponse actualizarPerfil(
+	        Integer idusuario,
+	        ActualizarPerfilRequest request) {
+
+	    Usuario usuario = RepoUsu
 	            .findById(idusuario)
 	            .orElseThrow(() ->
 	                    new RuntimeException("Usuario no encontrado"));
-
-	    usuario.setNombres(
-	            request.getNombres());
-
-	    usuario.setApellidos(
-	            request.getApellidos());
 
 	    usuario.setDireccion(
 	            request.getDireccion());
@@ -159,7 +187,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 	            usuario.getDireccion(),
 	            usuario.getEmail(),
 	            usuario.getCelular(),
-	            usuario.getFotoperfil());
+	            usuario.getFotoperfil()
+	    );
 	}
 
 	@Override
@@ -183,6 +212,60 @@ public class UsuarioServiceImpl implements UsuarioService {
 	            usuario.getEmail(),
 	            usuario.getCelular(),
 	            usuario.getFotoperfil());
+	}
+
+	@Override
+	public PerfilResponse actualizarPassword(
+	        Integer idusuario,
+	        ActualizarPasswordRequest request) {
+
+	    Usuario usuario = RepoUsu.findById(idusuario)
+	            .orElseThrow(() ->
+	                    new RuntimeException("Usuario no encontrado"));
+
+	    if (!passwordEncoder.matches(
+	            request.getPasswordActual(),
+	            usuario.getPwd())) {
+
+	        throw new RuntimeException(
+	                "La contraseña actual es incorrecta"
+	        );
+	    }
+
+	    if (!request.getPasswordNueva()
+	            .equals(request.getConfirmarPassword())) {
+
+	        throw new RuntimeException(
+	                "Las contraseñas no coinciden"
+	        );
+	    }
+
+	    if (passwordEncoder.matches(
+	            request.getPasswordNueva(),
+	            usuario.getPwd())) {
+
+	        throw new RuntimeException(
+	                "La nueva contraseña debe ser diferente"
+	        );
+	    }
+
+	    usuario.setPwd(
+	            passwordEncoder.encode(
+	                    request.getPasswordNueva()
+	            )
+	    );
+
+	    RepoUsu.save(usuario);
+
+	    return new PerfilResponse(
+	            usuario.getIdusuario(),
+	            usuario.getNombres(),
+	            usuario.getApellidos(),
+	            usuario.getDireccion(),
+	            usuario.getEmail(),
+	            usuario.getCelular(),
+	            usuario.getFotoperfil()
+	    );
 	}
 	
 	

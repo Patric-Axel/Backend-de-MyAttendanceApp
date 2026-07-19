@@ -2,6 +2,7 @@ package com.moviles.services;
 
 
 import com.moviles.dto.ActualizarFotoRequest;
+import com.moviles.dto.ActualizarPasswordRequest;
 import com.moviles.dto.ActualizarPerfilRequest;
 import com.moviles.dto.LoginRequest;
 import com.moviles.dto.PerfilResponse;
@@ -19,4 +20,5 @@ public interface UsuarioService {
 	
 	PerfilResponse actualizarFotoPerfil(Integer idusuario,  ActualizarFotoRequest request);
 
+	PerfilResponse actualizarPassword(Integer idusuario, ActualizarPasswordRequest request);
 }

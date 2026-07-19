@@ -1,16 +1,21 @@
 package com.moviles.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 public class ActualizarPerfilRequest {
 
-	   	private String nombres;
-	    private String apellidos;
-	    private String direccion;
-	    private String celular;
+    @NotBlank(message = "El celular es obligatorio")
+    @Pattern(
+        regexp = "\\d{9}",
+        message = "El celular debe contener 9 dígitos"
+    )
+    private String celular;
+
+    @NotBlank(message = "La dirección es obligatoria")
+    private String direccion;
 }
